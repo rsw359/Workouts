@@ -1,6 +1,13 @@
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useState } from "react";
+
+//date-fns//
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import UpdateModal from "./UpdateModal";
 
 const WorkoutDetails = ({ workout }) => {
+  const [openModal, setOpenModal] = useState(false);
+  // const [current, setCurrent] = useState(workout);
   const { dispatch } = useWorkoutsContext();
 
   const handleClick = async () => {
@@ -14,6 +21,8 @@ const WorkoutDetails = ({ workout }) => {
     }
   };
 
+  // TODO: Create custom modal for updates//
+
   return (
     <div className="workout-details">
       <h4>{workout.title}</h4>
@@ -25,8 +34,27 @@ const WorkoutDetails = ({ workout }) => {
         <strong>Reps: (kg): </strong>
         {workout.reps}
       </p>
-      <p>{workout.createdAt}</p>
-      <span onClick={handleClick}>Delete</span>
+      <p>
+        {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
+      </p>
+      <span className="material-symbols-outlined" onClick={handleClick}>
+        Delete
+      </span>
+
+      <button
+        className="material-symbols-outlined"
+        onClick={() => {
+          setOpenModal(true);
+        }}
+      >
+        Edit_square
+      </button>
+
+      <UpdateModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        workout={workout}
+      />
     </div>
   );
 };
