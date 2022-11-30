@@ -73,10 +73,26 @@ header a {
   cursor: pointer;
   background: var(--primary);
   padding: 6px;
-  border-radius: 5%;
+  border-radius: 50%;
   color: #fff;
 } 
 
+.workout-details button {
+  cursor: pointer;
+  border: none;
+  background-color: #1aac83;
+  padding-bottom: 6px;
+  border-radius: 10%;
+  color: #fff;
+}  
+
+.updateModal p{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: #1aac83;
+}
 /* New Workout Form  */
 label, input {
   display: block;
@@ -107,3 +123,7 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+input.error {
+  border: 1px solid var(--error);
+}
+
